@@ -50,9 +50,9 @@ const NavMenu = () => {
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
-          <NavAvatar className="pl-2 md:pl-4" />
         </NavigationMenuList>
       </NavigationMenu>
+      <NavAvatar className="pl-2 md:pl-4" />
     </nav>
   );
 };

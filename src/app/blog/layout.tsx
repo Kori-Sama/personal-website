@@ -1,3 +1,5 @@
+import SelfCard from "@/components/blog/self-card";
+
 const BlogLayout = ({
   children,
 }: Readonly<{
@@ -5,8 +7,13 @@ const BlogLayout = ({
 }>) => {
   return (
     <>
-      <div className="w-full h-20" />
-      {children}
+      <div className="h-20" />
+      <main>
+        <div className="flex flex-col items-center justify-center gap-10 rounded-md p-4">
+          {children}
+        </div>
+        <SelfCard className="fixed left-[75%] top-[30%] invisible lg:visible" />
+      </main>
     </>
   );
 };

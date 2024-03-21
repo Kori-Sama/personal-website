@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { login } from "@/lib/http/login";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -22,6 +24,7 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,8 +32,19 @@ const LoginForm = () => {
       password: "",
     },
   });
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const message = await login(values);
+    if (message.type === "success") {
+      console.log(message.message);
+      router.push("/");
+    } else if (message.type === "bad") {
+      form.setError("username", {
+        type: "manual",
+        message: message.message,
+      });
+    } else {
+      console.error(message.message);
+    }
   };
   return (
     <Form {...form}>

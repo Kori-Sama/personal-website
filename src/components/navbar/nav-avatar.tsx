@@ -7,7 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 import ThemeToggle from "./theme-toggle";
 import { cn } from "@/lib/utils";
@@ -26,9 +26,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const NavAvatar = ({ className }: { className?: string }) => {
-  const handleLogout = () => {
-    console.log("logout");
-  };
   return (
     <div className={cn("flex items-center", className)}>
       <AlertDialog>
@@ -54,7 +51,7 @@ const NavAvatar = ({ className }: { className?: string }) => {
               <ThemeToggle />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="bg-destructive">
+            <DropdownMenuItem className="bg-destructive focus:bg-destructive/70">
               <AlertDialogTrigger className="w-full text-start text-sm font-medium">
                 Logout
               </AlertDialogTrigger>
@@ -69,10 +66,7 @@ const NavAvatar = ({ className }: { className?: string }) => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleLogout}
-              className="bg-destructive"
-            >
+            <AlertDialogAction className="bg-destructive">
               Confirm
             </AlertDialogAction>
           </AlertDialogFooter>
