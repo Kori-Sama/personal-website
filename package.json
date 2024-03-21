@@ -21,9 +21,12 @@
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.4",
     "lucide-react": "^0.359.0",
     "next": "14.1.4",
     "next-themes": "^0.3.0",
+    "postgres": "^3.4.3",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
@@ -33,7 +36,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.11.30",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

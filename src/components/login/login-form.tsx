@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { login } from "@/lib/http/login";
 import { useRouter } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const formSchema = z.object({
   username: z.string().min(1, {
