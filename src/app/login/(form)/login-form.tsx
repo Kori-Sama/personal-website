@@ -10,10 +10,9 @@ import {
   FormMessageOccupation,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { revalidatePath } from "next/cache";
 import { handleLogin } from "./actions";
+import SubmitButton from "@/components/button/submit-button";
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -33,12 +32,14 @@ const LoginForm = () => {
       password: "",
     },
   });
-
   return (
     <Form {...form}>
       <form
-        action={async (formData) => {
-          const message = await handleLogin(formData);
+        action={async () => {
+          const isValidate = await form.trigger();
+          if (!isValidate) return;
+          const values = form.getValues();
+          const message = await handleLogin(values);
           if (message.type === "ok") {
             router.push("/");
           } else if (message.type === "bad") {
@@ -82,7 +83,7 @@ const LoginForm = () => {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <SubmitButton />
       </form>
     </Form>
   );

@@ -9,10 +9,10 @@ import {
   FormMessageOccupation,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { FieldWrapper } from "./form-utils";
 import { useRouter } from "next/navigation";
 import { handleRegister } from "./actions";
+import SubmitButton from "@/components/button/submit-button";
 
 const formSchema = z
   .object({
@@ -44,8 +44,11 @@ const RegisterForm = () => {
   return (
     <Form {...form}>
       <form
-        action={async (formData) => {
-          const message = await handleRegister(formData);
+        action={async () => {
+          const isValidate = await form.trigger();
+          if (!isValidate) return;
+          const values = form.getValues();
+          const message = await handleRegister(values);
           if (message.type === "ok") {
             router.push("/");
           } else {
@@ -103,7 +106,7 @@ const RegisterForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <SubmitButton />
       </form>
     </Form>
   );
