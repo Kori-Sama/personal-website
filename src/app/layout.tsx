@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import NavMenu from "@/components/navbar/nav-menu";
+import Header from "./header";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -37,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavMenu />
+          <Header />
           {children}
         </ThemeProvider>
       </body>

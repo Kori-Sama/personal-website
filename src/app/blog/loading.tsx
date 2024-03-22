@@ -1,4 +1,4 @@
-import LoadingCard from "@/components/blog/loading-card";
+import LoadingCard from "@/components/card/loading-card";
 
 const BlogLoading = () => {
   return (

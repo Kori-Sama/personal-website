@@ -1,5 +1,5 @@
-import BlogCard from "@/components/blog/blog-card";
-import SelfCard from "@/components/blog/self-card";
+import PostCard from "@/app/blog/post-card";
+import SelfCard from "@/components/card/self-card";
 
 const BlogPage = async () => {
   return (

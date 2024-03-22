@@ -1,4 +1,4 @@
-import SelfCard from "@/components/blog/self-card";
+import SelfCard from "@/components/card/self-card";
 
 const Home = () => {
   return (

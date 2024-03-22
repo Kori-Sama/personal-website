@@ -11,8 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FieldWrapper } from "./form-utils";
-import { register } from "@/lib/http/login";
 import { useRouter } from "next/navigation";
+import { handleRegister } from "./actions";
 
 const formSchema = z
   .object({
@@ -41,24 +41,20 @@ const RegisterForm = () => {
       confirm: "",
     },
   });
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const message = await register(values);
-    if (message.type === "success") {
-      console.log(message.message);
-      router.push("/");
-    } else if (message.type === "bad") {
-      form.setError("username", {
-        type: "manual",
-        message: message.message,
-      });
-    } else {
-      console.error(message.message);
-    }
-  };
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        action={async (formData) => {
+          const message = await handleRegister(formData);
+          if (message.type === "ok") {
+            router.push("/");
+          } else {
+            form.setError("username", {
+              type: "manual",
+              message: message.message,
+            });
+          }
+        }}
         className="flex flex-col items-center space-y-4"
       >
         <FormField

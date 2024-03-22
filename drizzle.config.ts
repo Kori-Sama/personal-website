@@ -2,8 +2,8 @@ import type { Config } from "drizzle-kit";
 
 export default {
   driver: "pg",
-  out: "src/lib/db",
-  schema: "src/lib/db/schema.ts",
+  out: "./drizzle",
+  schema: "./src/db/schema.ts",
   dbCredentials: {
     host: process.env.DB_HOST as string,
     port: Number(process.env.DB_PORT),

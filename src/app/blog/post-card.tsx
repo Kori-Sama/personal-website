@@ -8,7 +8,7 @@ import {
 import Link from "next/link";
 
 interface Blog {
-  id: number;
+  id: string;
   title: string;
   author: string;
   content: string;
@@ -16,7 +16,7 @@ interface Blog {
   updatedAt: string;
 }
 
-const BlogCard = ({ id, title, author, createAt, content }: Blog) => {
+const PostCard = ({ id, title, author, createAt, content }: Blog) => {
   const contentLimit = 300;
   return (
     <Link
@@ -38,4 +38,4 @@ const BlogCard = ({ id, title, author, createAt, content }: Blog) => {
     </Link>
   );
 };
-export default BlogCard;
+export default PostCard;

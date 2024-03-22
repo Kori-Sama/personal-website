@@ -1,6 +1,4 @@
-"use client";
-
-import LoginTableWithImage from "@/components/login/login-table-with-img";
+import LoginTableWithImage from "@/app/login/login-table-with-img";
 
 const LoginPage = () => {
   return (

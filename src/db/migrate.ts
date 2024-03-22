@@ -6,14 +6,15 @@ import { env } from "@/lib/env";
 
 const migrationClient = postgres(env.CONN_STR, { max: 1 });
 
-async function main() {
+const main = async () => {
   await migrate(drizzle(migrationClient), {
-    migrationsFolder: "src/lib/db/",
+    migrationsFolder: "src/lib/db/migrations",
   });
   await migrationClient.end();
-}
+  console.log("Migration successful");
+};
 
-main().catch((err) => {
-  console.error(err);
+main().catch((error) => {
+  console.error(error);
   process.exit(1);
 });

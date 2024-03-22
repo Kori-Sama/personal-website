@@ -24,6 +24,7 @@ import {
 import avatar from "@/assets/avatar.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { logOutAction } from "./actions";
 
 const NavAvatar = ({ className }: { className?: string }) => {
   return (
@@ -51,9 +52,9 @@ const NavAvatar = ({ className }: { className?: string }) => {
               <ThemeToggle />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="bg-destructive focus:bg-destructive/70">
+            <DropdownMenuItem className="bg-destructive focus:bg-destructive/60">
               <AlertDialogTrigger className="w-full text-start text-sm font-medium">
-                Logout
+                LogOut
               </AlertDialogTrigger>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -66,9 +67,14 @@ const NavAvatar = ({ className }: { className?: string }) => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction className="bg-destructive">
-              Confirm
-            </AlertDialogAction>
+            <form action={logOutAction}>
+              <AlertDialogAction
+                className="bg-destructive hover:bg-destructive/60"
+                type="submit"
+              >
+                Confirm
+              </AlertDialogAction>
+            </form>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

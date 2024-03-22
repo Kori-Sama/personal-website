@@ -1,6 +1,7 @@
+"use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LoginForm from "./login-form";
-import RegisterForm from "./register-form";
+import LoginForm from "./(form)/login-form";
+import RegisterForm from "./(form)/register-form";
 import Image from "next/image";
 import sideImg from "@/assets/sideImg.png";
 
