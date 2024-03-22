@@ -24,7 +24,8 @@ import {
 import avatar from "@/assets/avatar.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { logOutAction } from "./actions";
+import { redirect } from "next/navigation";
+import { logout } from "@/lib/actions";
 
 const NavAvatar = ({ className }: { className?: string }) => {
   return (
@@ -67,7 +68,7 @@ const NavAvatar = ({ className }: { className?: string }) => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <form action={logOutAction}>
+            <form action={logout}>
               <AlertDialogAction
                 className="bg-destructive hover:bg-destructive/60"
                 type="submit"

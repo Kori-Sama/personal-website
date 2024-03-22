@@ -19,11 +19,11 @@ const formSchema = z
     username: z.string().min(1, {
       message: "Username is required",
     }),
-    password: z.string().min(8, {
-      message: "At least 8 characters long",
+    password: z.string().min(6, {
+      message: "At least 6 characters long",
     }),
-    confirm: z.string().min(8, {
-      message: "At least 8 characters long",
+    confirm: z.string().min(6, {
+      message: "At least 6 characters long",
     }),
   })
   .refine((data) => data.password === data.confirm, {

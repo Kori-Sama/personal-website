@@ -7,16 +7,16 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 
-interface Blog {
-  id: string;
+export interface PostProps {
+  id: number;
   title: string;
   author: string;
   content: string;
-  createAt: string;
+  createdAt: string;
   updatedAt: string;
 }
 
-const PostCard = ({ id, title, author, createAt, content }: Blog) => {
+const PostCard = ({ id, title, author, createdAt, content }: PostProps) => {
   const contentLimit = 300;
   return (
     <Link
@@ -27,7 +27,7 @@ const PostCard = ({ id, title, author, createAt, content }: Blog) => {
         <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription className="flex justify-between text-lg">
-            <sub>{createAt}</sub>
+            <sub>{createdAt}</sub>
             <sub>By {author}</sub>
           </CardDescription>
         </CardHeader>
