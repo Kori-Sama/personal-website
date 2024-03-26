@@ -2,7 +2,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ReactElement } from "react";
 import { GrStatusGood } from "react-icons/gr";
 
-const AlertSuccess = ({ children }: { children: ReactElement }) => {
+const AlertSuccess = ({ children }: { children: ReactElement | string }) => {
   return (
     <Alert variant="destructive">
       <GrStatusGood className="h-4 w-4" />

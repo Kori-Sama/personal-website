@@ -12,8 +12,8 @@ export interface PostProps {
   title: string;
   author: string;
   content: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const PostCard = ({ id, title, author, createdAt, content }: PostProps) => {
@@ -27,7 +27,7 @@ const PostCard = ({ id, title, author, createdAt, content }: PostProps) => {
         <CardHeader>
           <CardTitle>{title}</CardTitle>
           <CardDescription className="flex justify-between text-lg">
-            <sub>{createdAt}</sub>
+            <sub>{createdAt.toLocaleString()}</sub>
             <sub>By {author}</sub>
           </CardDescription>
         </CardHeader>

@@ -17,8 +17,14 @@ const envSchema = z.object({
 });
 
 process.env.CONN_STR = `postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
-export const env = envSchema.parse(process.env);
-process.env.JWT_EXPIRE *= 60;
+const envValidated = envSchema.safeParse(process.env);
+if (!envValidated.success) {
+  throw new Error(
+    "Invalid environment variables: " + envValidated.error.message
+  );
+}
+export const env = envValidated.data;
+env.JWT_EXPIRE *= 60;
 
 type EnvSchemaType = z.infer<typeof envSchema>;
 

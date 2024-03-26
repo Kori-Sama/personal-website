@@ -3,7 +3,7 @@ import { BiError } from "react-icons/bi";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ReactElement } from "react";
 
-const AlertError = ({ children }: { children: ReactElement }) => {
+const AlertError = ({ children }: { children: ReactElement | string }) => {
   return (
     <Alert variant="destructive">
       <BiError className="h-4 w-4" />

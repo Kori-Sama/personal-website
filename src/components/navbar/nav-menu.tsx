@@ -5,7 +5,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Home, Newspaper, Bolt } from "lucide-react";
+import { Home, Newspaper, Bolt, MessageSquareMore } from "lucide-react";
 import Link from "next/link";
 
 const NavMenu = () => {
@@ -19,6 +19,14 @@ const NavMenu = () => {
             <Link href="/about" className={icon}>
               <Bolt />
               <p>About</p>
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+            <Link href="/comment" className={icon}>
+              <MessageSquareMore />
+              <p>Comment</p>
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
