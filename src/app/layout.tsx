@@ -3,7 +3,6 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/components/provider/theme-provider";
-import NavMenu from "@/components/navbar/nav-menu";
 import Header from "./header";
 
 const fontSans = FontSans({

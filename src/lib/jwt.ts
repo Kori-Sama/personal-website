@@ -20,8 +20,6 @@ export const encrypt = async (payload: Session) => {
 
 export const decrypt = async (session: string): Promise<Session> => {
   const { payload } = await jwtVerify(session, key, { algorithms: ["HS256"] });
-  if (typeof payload.exp === "number") {
-  }
   return payload as Session;
 };
 

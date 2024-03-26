@@ -1,14 +1,8 @@
 import PostCard, { PostProps } from "@/app/blog/post-card";
-import SelfCard from "@/components/card/self-card";
 import { db } from "@/db";
-import { posts } from "@/db/schema";
 
 const BlogPage = async () => {
-  const res = await db.query.posts.findMany({
-    with: {
-      author: true,
-    },
-  });
+  const res = await db.query.posts.findMany();
 
   return (
     <>
@@ -16,7 +10,7 @@ const BlogPage = async () => {
         res.map((post) => {
           const p = {
             ...post,
-            author: post.author.name,
+            author: "Kori Sama",
             createdAt: post.createdAt.toString(),
             updatedAt: post.updatedAt.toString(),
           } as PostProps;
