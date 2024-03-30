@@ -11,8 +11,8 @@ const BlogPage = async () => {
           const p = {
             ...post,
             author: "Kori Sama",
-            createdAt: post.createdAt.toString(),
-            updatedAt: post.updatedAt.toString(),
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt,
           } as PostProps;
           return <PostCard key={p.id} {...p} />;
         })
