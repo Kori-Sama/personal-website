@@ -20,6 +20,7 @@ import SocialCard from "./social-card";
 import Image from "next/image";
 import avatar from "@/assets/avatar.jpg";
 import { env } from "@/lib/env";
+import { links } from "@/lib/constants";
 
 const SelfCard = ({ className }: { className?: string }) => {
   const iconSize = 24;
@@ -43,17 +44,17 @@ const SelfCard = ({ className }: { className?: string }) => {
         <div className="flex flex-col gap-2">
           <SocialCard
             icon={<FaGithub />}
-            link={env.LINK_GITHUB}
+            link={links.GITHUB}
             name="Kori Sama"
           />
           <SocialCard
             icon={<FaCode />}
-            link={env.LINK_SOURCE_CODE}
+            link={links.SOURCE_CODE}
             name="Source Code"
           />
           <SocialCard
             icon={<FaDiscord />}
-            link={env.LINK_DISCORD}
+            link={links.DISCORD}
             name="Discord"
           />
         </div>

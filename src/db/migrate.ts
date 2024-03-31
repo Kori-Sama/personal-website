@@ -1,3 +1,7 @@
+/**
+ * This is a script that migrates the database schema to the latest version.
+ */
+
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { migrate } from "drizzle-orm/postgres-js/migrator";
