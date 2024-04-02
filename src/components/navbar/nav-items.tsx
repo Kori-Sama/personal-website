@@ -9,7 +9,7 @@ interface NavItemsProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-const NavItems = ({ className, ...props }: NavItemsProps) => {
+const NavItems = ({ ...props }: NavItemsProps) => {
   return (
     <>
       <LinkItem href="/about" {...props}>
@@ -48,10 +48,10 @@ const LinkItem = ({
 }: LinkItemProps) => {
   const pathname = usePathname();
   const item = cn(
-    className,
-    "flex items-center gap-2",
     buttonVariants({ variant: "ghost" }),
-    pathname === href.toString() ? "bg-accent" : ""
+    className,
+    "space-x-2",
+    pathname === href.toString() ? "bg-accent text-accent-foreground" : ""
   );
   const router = useRouter();
 

@@ -8,8 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-
-import ThemeToggle from "./theme-toggle";
 import { cn } from "@/lib/utils";
 import {
   AlertDialog,
@@ -48,8 +46,6 @@ const NavAvatar = ({ className }: { className?: string }) => {
                   Login
                 </Link>
               </DropdownMenuItem>
-
-              <ThemeToggle />
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="bg-destructive focus:bg-destructive/60">
@@ -69,7 +65,7 @@ const NavAvatar = ({ className }: { className?: string }) => {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <form action={logout}>
               <AlertDialogAction
-                className="bg-destructive hover:bg-destructive/60"
+                className="bg-destructive hover:bg-destructive/60 w-full"
                 type="submit"
               >
                 Confirm
