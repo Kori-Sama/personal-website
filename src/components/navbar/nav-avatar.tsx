@@ -24,7 +24,6 @@ import {
 import avatar from "@/assets/avatar.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { logout } from "@/lib/actions";
 
 const NavAvatar = ({ className }: { className?: string }) => {

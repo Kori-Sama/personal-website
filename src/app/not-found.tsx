@@ -8,7 +8,7 @@ const NotFound = () => {
         <Separator orientation="vertical" className="border-foreground" />
         <p>Not Found</p>
       </div>
-      <p className="font-light text-foreground/20">You are a loser, haha!</p>
+      {/* <p className="font-light text-foreground/20">You are a loser, haha!</p> */}
     </div>
   );
 };
