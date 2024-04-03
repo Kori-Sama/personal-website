@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useAlert } from "@/hook/useAlert";
+import { useAlert } from "@/hook/use-alert";
 
 const AboutPage = () => {
   const [setSuccess, AlertSuccess] = useAlert({
