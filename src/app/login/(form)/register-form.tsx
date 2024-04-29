@@ -13,6 +13,7 @@ import { FieldWrapper } from "./form-utils";
 import { useRouter } from "next/navigation";
 import { handleRegister } from "./actions";
 import SubmitButton from "@/components/button/submit-button";
+import { useUser } from "@/store/user";
 
 const formSchema = z
   .object({
@@ -41,6 +42,7 @@ const RegisterForm = () => {
       confirm: "",
     },
   });
+  const setUser = useUser((state) => state.setUserInfo);
   return (
     <Form {...form}>
       <form
@@ -49,7 +51,8 @@ const RegisterForm = () => {
           if (!isValidate) return;
           const values = form.getValues();
           const message = await handleRegister(values);
-          if (message.type === "ok") {
+          if ("id" in message) {
+            setUser(message.id, message.username);
             router.push("/");
           } else {
             form.setError("username", {

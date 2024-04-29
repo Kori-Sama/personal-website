@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { handleLogin } from "./actions";
 import SubmitButton from "@/components/button/submit-button";
+import { UserInfo, useUser } from "@/store/user";
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -32,6 +33,9 @@ const LoginForm = () => {
       password: "",
     },
   });
+
+  const setUser = useUser((state) => state.setUserInfo);
+
   return (
     <Form {...form}>
       <form
@@ -40,7 +44,8 @@ const LoginForm = () => {
           if (!isValidate) return;
           const values = form.getValues();
           const message = await handleLogin(values);
-          if (message.type === "ok") {
+          if ("id" in message) {
+            setUser(message.id, message.username);
             router.push("/");
           } else if (message.type === "bad") {
             console.error(message.message);

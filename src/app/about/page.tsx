@@ -1,26 +1,11 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { useAlert } from "@/hook/use-alert";
-
 const AboutPage = () => {
-  const [setSuccess, AlertSuccess] = useAlert({
-    message: "Login Success",
-  });
-  const [setError, AlertError] = useAlert({
-    message: "Login Fail",
-    type: "error",
-  });
-
   return (
     <main className="flex gap-4 flex-col justify-center items-center h-screen">
-      {/* <h1 className="text-[40px]">About</h1> */}
-      <Button onClick={() => setSuccess(true)}>Success</Button>
-      <Button onClick={() => setError(true)} variant="destructive">
-        Error
-      </Button>
-      {AlertSuccess}
-      {AlertError}
+      <h1 className="text-4xl">About</h1>
+      <p className="text-lg mx-12 text-center">
+        This is a simple personal website built with Next.js, Tailwindcss,
+        ShadcnUI, Drizzle, Typescript, Postgresql.
+      </p>
     </main>
   );
 };

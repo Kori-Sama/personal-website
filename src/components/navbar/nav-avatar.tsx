@@ -1,3 +1,4 @@
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,8 +24,11 @@ import avatar from "@/assets/avatar.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { logout } from "@/lib/actions";
+import { useUser } from "@/store/user";
 
 const NavAvatar = ({ className }: { className?: string }) => {
+  const { username } = useUser((state) => state.userInfo);
+
   return (
     <div className={cn("flex items-center", className)}>
       <AlertDialog>
@@ -37,7 +41,7 @@ const NavAvatar = ({ className }: { className?: string }) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel className="cursor-default">
-              Kori Sama
+              {username}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>

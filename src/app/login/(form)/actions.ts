@@ -2,11 +2,8 @@
 
 import { db } from "@/db";
 import { users } from "@/db/schema";
-import { env } from "@/lib/env";
-import { encrypt, setSession } from "@/lib/jwt";
-import { eq } from "drizzle-orm";
-import { serial } from "drizzle-orm/pg-core";
-import { cookies } from "next/headers";
+import { setSession } from "@/lib/jwt";
+import { UserInfo } from "@/store/user";
 
 type ActionMessage = {
   type: "ok" | "bad" | "error";
@@ -18,9 +15,12 @@ type FormData = {
   password: string;
 };
 
-export const handleLogin = async ({ username, password }: FormData) => {
+export const handleLogin = async ({
+  username,
+  password,
+}: FormData): Promise<ActionMessage | UserInfo> => {
   const user = await db.query.users.findFirst({
-    where: eq(users.name, username),
+    where: (u, { eq }) => eq(u.name, username),
     columns: {
       id: true,
       name: true,
@@ -37,11 +37,16 @@ export const handleLogin = async ({ username, password }: FormData) => {
 
   await setSession({ id: user.id, username: user.name });
 
-  return ok("Login successful");
+  return { id: user.id, username: user.name };
 };
 
-export const handleRegister = async ({ username, password }: FormData) => {
-  const user = await db.query.users.findFirst();
+export const handleRegister = async ({
+  username,
+  password,
+}: FormData): Promise<ActionMessage | UserInfo> => {
+  const user = await db.query.users.findFirst({
+    where: (u, { eq }) => eq(u.name, username),
+  });
   if (user !== undefined) {
     return bad("User already exists");
   }
@@ -52,7 +57,7 @@ export const handleRegister = async ({ username, password }: FormData) => {
 
   await setSession(userInfo[0]);
 
-  return ok("Register successful");
+  return { id: userInfo.id, username: userInfo.name };
 };
 
 const ok = (message: string) => {

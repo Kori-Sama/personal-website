@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import Header from "./header";
+import { cookies } from "next/headers";
+import { decrypt } from "@/lib/jwt";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -17,11 +19,17 @@ export const metadata: Metadata = {
   authors: [{ name: "Kori" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const token = cookies().get("session")?.value as string;
+  let userInfo = null;
+  if (token) {
+    const { id, username } = await decrypt(token);
+    userInfo = { id, username };
+  }
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -37,7 +45,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <Header userInfo={userInfo} />
           {children}
         </ThemeProvider>
       </body>
