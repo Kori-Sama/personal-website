@@ -31,7 +31,7 @@ const AboutPage = () => {
         <Image src={KawaiiNextjs} alt="Nextjs" width="400" />
         <Image src={KawaiiTailwindcss} alt="Tailwindcss" width="400" />
       </div>
-      <p className="fixed text-sm bottom-[5%]">
+      <p className="lg:fixed text-sm lg:bottom-[5%] my-4 py-4 lg:my-0 lg:py-0">
         Logo designed by
         <a
           href="https://twitter.com/sawaratsuki1004"
