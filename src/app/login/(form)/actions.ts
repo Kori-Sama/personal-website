@@ -50,14 +50,16 @@ export const handleRegister = async ({
   if (user !== undefined) {
     return bad("User already exists");
   }
-  const userInfo = await db
-    .insert(users)
-    .values({ name: username, password })
-    .returning({ id: users.id, username: users.name });
+  const userInfo = (
+    await db
+      .insert(users)
+      .values({ name: username, password })
+      .returning({ id: users.id, username: users.name })
+  )[0];
 
-  await setSession(userInfo[0]);
+  await setSession(userInfo);
 
-  return { id: userInfo.id, username: userInfo.name };
+  return { id: userInfo.id, username: userInfo.username };
 };
 
 const ok = (message: string) => {

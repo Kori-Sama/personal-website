@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { sendComment } from "./action";
@@ -11,11 +11,15 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { DrawerClose } from "@/components/ui/drawer";
+import { useComments } from "@/store/comments";
+import Link from "next/link";
 
 const CommentInput = ({ className }: { className?: string }) => {
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState("");
   const [value, setValue] = useState("");
+
+  const addComment = useComments((s) => s.addComment);
 
   return (
     <div
@@ -40,6 +44,8 @@ const CommentInput = ({ className }: { className?: string }) => {
               setErr("You are not logged in");
             } else if (msg === "NoUser") {
               setErr("User not found");
+            } else {
+              addComment(msg);
             }
           }}
           className="flex flex-col gap-4 items-end"
@@ -53,7 +59,7 @@ const CommentInput = ({ className }: { className?: string }) => {
           />
           <div className="flex justify-between w-full">
             {err ? <p className="text-red-500">{err}</p> : <div />}
-            <DrawerClose>
+            <DrawerClose asChild>
               <Button type="submit" className="lg:w-auto w-full">
                 Submit
               </Button>
@@ -64,12 +70,18 @@ const CommentInput = ({ className }: { className?: string }) => {
           <DialogHeader>
             You are not logged in. Please log in to comment.
           </DialogHeader>
-          <DrawerClose>
+          <DrawerClose asChild>
             <DialogFooter>
               <Button variant="secondary" onClick={() => setOpen(false)}>
                 No, thanks
               </Button>
-              <Button onClick={() => setOpen(false)}>Login</Button>
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className={buttonVariants()}
+              >
+                Login
+              </Link>
             </DialogFooter>
           </DrawerClose>
         </DialogContent>

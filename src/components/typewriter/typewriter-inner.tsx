@@ -137,7 +137,6 @@ class TypeWriter {
         callback();
         return;
       }
-      console.log("idx", idx);
       this.element.textContent += text.charAt(idx);
       idx++;
       setTimeout(() => typeNextChar(), speed);
