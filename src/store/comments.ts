@@ -22,6 +22,6 @@ export const useComments = create<CommentState>()((set) => ({
     set({ comments });
   },
   addComment: (comment) => {
-    set((state) => ({ comments: [...state.comments, comment] }));
+    set((state) => ({ comments: [comment, ...state.comments] }));
   },
 }));

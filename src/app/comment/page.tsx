@@ -25,10 +25,10 @@ const CommentPage = async () => {
   return (
     <div className="flex flex-col h-screen items-center">
       <Drawer>
-        <CommentContent initComments={comments} />
+        <CommentContent initComments={comments.reverse()} />
         <CommentInput className="fixed left-[75%] bottom-[40%] lg:block hidden" />
         <DrawerTrigger className="block lg:hidden" asChild>
-          <Button variant="default" className="my-2  mb-12">
+          <Button variant="default" className="my-2  mb-6">
             Comment
           </Button>
         </DrawerTrigger>
