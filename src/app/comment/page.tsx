@@ -28,7 +28,7 @@ const CommentPage = async () => {
         <CommentContent initComments={comments} />
         <CommentInput className="fixed left-[75%] bottom-[40%] lg:block hidden" />
         <DrawerTrigger className="block lg:hidden" asChild>
-          <Button variant="secondary" className="my-2">
+          <Button variant="default" className="my-2  mb-12">
             Comment
           </Button>
         </DrawerTrigger>
