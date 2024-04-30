@@ -2,7 +2,7 @@ import Image from "next/image";
 import KawaiiReact from "@/assets/React.png";
 import KawaiiNextjs from "@/assets/Next.js.png";
 import KawaiiTailwindcss from "@/assets/Tailwindcss6.png";
-import KawaiiTs from "@/assets/Typescript.png";
+import KawaiiTs from "@/assets/TypeScript.png";
 
 const AboutPage = () => {
   return (
