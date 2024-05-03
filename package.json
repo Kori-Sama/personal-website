@@ -7,7 +7,6 @@
     "db:generate": "drizzle-kit generate:pg --schema ./src/db/schema.ts --out=./drizzle",
     "db:studio": "drizzle-kit studio",
     "db:migrate": "tsx ./src/db/migrate.ts",
-    "db:seed": "tsx ./src/db/seed.ts",
     "db:push": "drizzle-kit push:pg",
     "db:drop": "drizzle-kit drop",
     "build": "next build",

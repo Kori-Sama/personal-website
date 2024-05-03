@@ -37,3 +37,9 @@ export const posts = pgTable("posts", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export const desktopIp = pgTable("desktop_ip", {
+  id: serial("id").primaryKey(),
+  ip: text("ip").notNull().default("127.0.0.1"),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
