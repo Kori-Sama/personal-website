@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { handleRegister } from "./actions";
 import SubmitButton from "@/components/button/submit-button";
 import { useUser } from "@/store/user";
+import { useState } from "react";
 
 const formSchema = z
   .object({
@@ -43,9 +44,13 @@ const RegisterForm = () => {
     },
   });
   const setUser = useUser((state) => state.setUserInfo);
+  const [pending, setPending] = useState(false);
   return (
     <Form {...form}>
       <form
+        onSubmit={() => {
+          setPending(true);
+        }}
         action={async () => {
           const isValidate = await form.trigger();
           if (!isValidate) return;
@@ -109,7 +114,7 @@ const RegisterForm = () => {
             </FormItem>
           )}
         />
-        <SubmitButton />
+        <SubmitButton pending={pending} />
       </form>
     </Form>
   );

@@ -12,11 +12,13 @@ import {
 import { useState } from "react";
 import { DrawerClose } from "@/components/ui/drawer";
 import Link from "next/link";
+import SubmitButton from "@/components/button/submit-button";
 
 const CommentInput = ({ className }: { className?: string }) => {
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState("");
   const [value, setValue] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <div
@@ -27,12 +29,16 @@ const CommentInput = ({ className }: { className?: string }) => {
     >
       <Dialog open={open}>
         <form
-          action={async (formData) => {
+          onSubmit={() => {
+            setSubmitting(true);
             setErr("");
             setValue("");
+          }}
+          action={async (formData) => {
             const comment = formData.get("comment") as string;
             if (!comment) {
               setErr("Comment cannot be empty");
+              setSubmitting(false);
               return;
             }
             const msg = await sendComment(comment);
@@ -42,6 +48,7 @@ const CommentInput = ({ className }: { className?: string }) => {
             } else if (msg === "NoUser") {
               setErr("User not found");
             }
+            setSubmitting(false);
           }}
           className="flex flex-col gap-4 items-end"
         >
@@ -55,9 +62,7 @@ const CommentInput = ({ className }: { className?: string }) => {
           <div className="flex justify-between w-full">
             {err ? <p className="text-red-500">{err}</p> : <div />}
             <DrawerClose asChild>
-              <Button type="submit" className="lg:w-auto w-full">
-                Submit
-              </Button>
+              <SubmitButton className="lg:w-auto w-full" pending={submitting} />
             </DrawerClose>
           </div>
         </form>

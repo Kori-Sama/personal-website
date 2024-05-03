@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const SubmitButton = ({
   className,
@@ -11,7 +12,14 @@ const SubmitButton = ({
   children?: ReactElement;
 }) => {
   return (
-    <Button className={className} type="submit" aria-disabled={true}>
+    <Button
+      className={cn(
+        "disabled:bg-accent-foreground disabled:cursor-not-allowed",
+        className
+      )}
+      type="submit"
+      disabled={pending ?? false}
+    >
       {children ? children : "Submit"}
     </Button>
   );

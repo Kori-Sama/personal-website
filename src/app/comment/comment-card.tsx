@@ -28,7 +28,7 @@ const CommentCard = ({
     >
       <CardTitle className="text-lg">{username}</CardTitle>
       <CardDescription className="text-sm">
-        {createdAt.toLocaleString()}
+        {createdAt.toLocaleString("zh")}
       </CardDescription>
       <CardContent className="px-0 mt-4">{content}</CardContent>
     </Card>
