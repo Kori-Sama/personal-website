@@ -2,8 +2,7 @@ import { db } from "@/db";
 import CommentInput from "./comment-input";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import CommentContent from "./comment-content";
-import { CommentType } from "@/store/comments";
+import CommentContent, { CommentType } from "./comment-content";
 
 const CommentPage = async () => {
   const comments = (await db.query.comments.findMany({
@@ -25,7 +24,7 @@ const CommentPage = async () => {
   return (
     <div className="flex flex-col h-screen items-center">
       <Drawer>
-        <CommentContent initComments={comments.reverse()} />
+        <CommentContent comments={comments.reverse()} />
         <CommentInput className="fixed left-[75%] bottom-[40%] lg:block hidden" />
         <DrawerTrigger className="block lg:hidden" asChild>
           <Button variant="default" className="my-2  mb-6">

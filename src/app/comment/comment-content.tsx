@@ -1,21 +1,21 @@
-"use client";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import CommentCard from "./comment-card";
-import { CommentType, useComments } from "@/store/comments";
-import { useEffect } from "react";
 
-type CommentContentProps = {
-  initComments: CommentType[];
+export type CommentType = {
+  id: number;
+  content: string;
+  createdAt: Date;
+  user: {
+    id: number;
+    name: string;
+  };
 };
 
-const CommentContent = ({ initComments }: CommentContentProps) => {
-  const setComments = useComments((s) => s.setComments);
-  const comments = useComments((s) => s.comments);
+type CommentContentProps = {
+  comments: CommentType[];
+};
 
-  useEffect(() => {
-    setComments(initComments);
-  }, []);
-
+const CommentContent = ({ comments }: CommentContentProps) => {
   return (
     <ScrollArea className="w-fit">
       <div className="flex flex-col gap-4 items-center mb-6 mt-20">

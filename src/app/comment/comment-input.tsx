@@ -19,7 +19,7 @@ const CommentInput = ({ className }: { className?: string }) => {
   const [err, setErr] = useState("");
   const [value, setValue] = useState("");
 
-  const addComment = useComments((s) => s.addComment);
+  // const addComment = useComments((s) => s.addComment);
 
   return (
     <div
@@ -44,8 +44,6 @@ const CommentInput = ({ className }: { className?: string }) => {
               setErr("You are not logged in");
             } else if (msg === "NoUser") {
               setErr("User not found");
-            } else {
-              addComment(msg);
             }
           }}
           className="flex flex-col gap-4 items-end"

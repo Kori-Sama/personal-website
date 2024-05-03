@@ -3,14 +3,12 @@
 import { db } from "@/db";
 import { comments } from "@/db/schema";
 import { decrypt } from "@/lib/jwt";
-import { CommentType } from "@/store/comments";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-type commentMsg = "NoLogin" | "NoUser";
+type commentMsg = "Ok" | "NoLogin" | "NoUser";
 
-export const sendComment = async (
-  comment: string
-): Promise<commentMsg | CommentType> => {
+export const sendComment = async (comment: string): Promise<commentMsg> => {
   const session = cookies().get("session")?.value;
 
   if (session === undefined) {
@@ -27,23 +25,8 @@ export const sendComment = async (
     return "NoUser";
   }
 
-  const res = await db
-    .insert(comments)
-    .values({ userId: id, content: comment })
-    .returning({
-      id: comments.id,
-      content: comments.content,
-      createdAt: comments.createdAt,
-    });
+  await db.insert(comments).values({ userId: id, content: comment });
 
-  const c = res.at(0)!;
-  return {
-    id: c.id,
-    content: c.content,
-    createdAt: c.createdAt,
-    user: {
-      id,
-      name: username,
-    },
-  };
+  revalidatePath("/comment");
+  return "Ok";
 };
