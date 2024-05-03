@@ -11,15 +11,12 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { DrawerClose } from "@/components/ui/drawer";
-import { useComments } from "@/store/comments";
 import Link from "next/link";
 
 const CommentInput = ({ className }: { className?: string }) => {
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState("");
   const [value, setValue] = useState("");
-
-  // const addComment = useComments((s) => s.addComment);
 
   return (
     <div
