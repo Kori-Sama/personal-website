@@ -61,6 +61,7 @@ const LoginForm = () => {
           } else {
             console.error(message.message);
           }
+          setPending(false);
         }}
         className="flex flex-col items-center space-y-4"
       >

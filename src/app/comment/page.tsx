@@ -22,8 +22,8 @@ const CommentPage = async () => {
   })) as CommentType[];
 
   return (
-    <div className="flex flex-col h-screen items-center">
-      <Drawer>
+    <Drawer>
+      <div className="flex flex-col items-center h-screen">
         <CommentContent comments={comments.reverse()} />
         <CommentInput className="fixed left-[75%] bottom-[40%] lg:block hidden" />
         <DrawerTrigger className="block lg:hidden" asChild>
@@ -34,8 +34,8 @@ const CommentPage = async () => {
         <DrawerContent className="block lg:hidden">
           <CommentInput className="border-0 shadow-none w-full" />
         </DrawerContent>
-      </Drawer>
-    </div>
+      </div>
+    </Drawer>
   );
 };
 

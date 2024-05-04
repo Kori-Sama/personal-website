@@ -65,6 +65,7 @@ const RegisterForm = () => {
               message: message.message,
             });
           }
+          setPending(false);
         }}
         className="flex flex-col items-center space-y-4"
       >

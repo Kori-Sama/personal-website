@@ -62,7 +62,7 @@ const CommentInput = ({ className }: { className?: string }) => {
           <div className="flex justify-between w-full">
             {err ? <p className="text-red-500">{err}</p> : <div />}
             <DrawerClose asChild>
-              <SubmitButton className="lg:w-auto w-full" pending={submitting} />
+              <SubmitButton className="lg:w-auto w-1/3" pending={submitting} />
             </DrawerClose>
           </div>
         </form>
