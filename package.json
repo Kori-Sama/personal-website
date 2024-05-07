@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "db:generate": "drizzle-kit generate:pg --schema ./src/db/schema.ts --out=./drizzle",
     "db:studio": "drizzle-kit studio",
     "db:migrate": "tsx ./src/db/migrate.ts",
